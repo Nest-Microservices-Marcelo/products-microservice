@@ -45,4 +45,11 @@ export class ProductsController {
   remove(@Payload('id', ParseIntPipe) id: number) {
     return this.productsService.remove(id);
   }
+
+  //validar que el id que se envia por el cliente exista en la base de datos de productos (SQLite) para poder manipular en ordenes (PostgreSQL)
+  @MessagePattern({ cmd: 'validate_products' })
+  validateProduct(@Payload() ids: number[]) {
+    console.log('ids', ids);
+    return this.productsService.validateProduct(ids);
+  }
 }

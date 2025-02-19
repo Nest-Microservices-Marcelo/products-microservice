@@ -83,6 +83,28 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
     });
     return product;
   }
+
+  //Se utiliza el método validateProduct para validar que los ids de la lista de productos estén en la base de datos de productos (SQLite)
+  async validateProduct(ids: number[]) {
+    ids = Array.from(new Set(ids)); //esto hace que el array no tenga ningun elemento duplicado
+
+    const products = await this.product.findMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+    });
+
+    if (products.length !== ids.length) {
+      throw new RpcException({
+        message: 'Some products ware not found',
+        status: HttpStatus.BAD_REQUEST,
+      });
+    }
+
+    return products;
+  }
 }
 
 //No es recomendable borrar un producto de la base de datos porque puede causar problemas
