@@ -33,6 +33,7 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
     }
     return {
       data: await this.product.findMany({
+        //El skip indica cuántos registros se deben omitir antes de empezar a tomar los registros
         skip: (page - 1) * limit,
         take: limit,
         where: { available: true },

@@ -1,5 +1,6 @@
 {
     "material-icon-theme.activeIconPack": "nest",
+    "workbench.tree.indent": 10,
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#2f7c47",
         "activityBar.background": "#2f7c47",
@@ -20,4 +21,5 @@
         "titleBar.inactiveForeground": "#e7e7e799"
     },
     "peacock.color": "#215732"
+
 }
