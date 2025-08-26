@@ -95,14 +95,14 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
           in: ids,
         },
       },
-    });
+    }); // Esto devuelve un array de productos que coinciden con los ids
 
     if (products.length !== ids.length) {
       throw new RpcException({
         message: 'Some products ware not found',
         status: HttpStatus.BAD_REQUEST,
       });
-    }
+    } // Si la cantidad de productos encontrados no es igual a la cantidad de ids enviados, significa que algunos productos no existen
 
     return products;
   }
